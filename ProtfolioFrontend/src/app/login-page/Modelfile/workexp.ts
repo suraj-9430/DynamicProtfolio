@@ -1,0 +1,19 @@
+export class page3{
+    email!:string
+    cabout1!:string|null
+    cabout2!:string|null
+    cabout3!:string|null
+    cabout4!:string|null
+    currcompany1!:string|null
+    currcompany2!:string|null
+    currcompany3!:string|null
+    currcompany4!:string|null
+    role1!:string|null
+    role2!:string|null
+    role3!:string|null
+    role4!:string|null
+    duration1!:string|null
+    duration2!:string|null
+    duration3!:string|null
+    duration4!:string|null
+}

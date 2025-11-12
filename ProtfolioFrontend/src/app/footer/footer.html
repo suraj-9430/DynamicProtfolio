@@ -1,0 +1,38 @@
+<div class="footer">
+  <h1>Follow Me</h1>
+  <h5>Contact Me : +91 - {{contact}}</h5>
+
+  <div class="content2">
+    <a [href]="linkedin" target="_blank" rel="noopener noreferrer">
+      <img src="linkedin-48.png" width="50" height="50" alt="LinkedIn">
+    </a>
+
+    <a href="mailto:{{email}}" target="_blank" rel="noopener noreferrer">
+      <img src="gmail-48.png" width="50" height="50" alt="Gmail">
+    </a>
+
+    <a [href]="github" target="_blank" rel="noopener noreferrer">
+      <img src="github-48.png" width="60" height="60" alt="GitHub">
+    </a>
+
+    <!-- <a href="https://www.instagram.com/_suraj_raj_663" target="_blank" rel="noopener noreferrer">
+      <img src="instagram-48.png" width="50" height="50" alt="Instagram">
+    </a> -->
+    <a [href]="twitter" target="_blank" rel="noopener noreferrer">
+      <img src="twitter-48.png" width="50" height="50" alt="Instagram">
+    </a>
+  </div>
+
+  <!-- <div class="important-doc">
+    <a href="https://drive.google.com/drive/folders/1dhvQc9Ejk32vtu4SowM4HoPpYa6Ds0e1?usp=sharing" target="_blank"
+      rel="noopener noreferrer">Important Doc</a>
+  </div> -->
+  <div class="important-doc">
+    <button (click)="openResumeInNewTab()" class="btn btn-primary" style="margin-right:8px; padding:6px 10px;">
+      View Resume
+    </button>
+
+    <img src="download-48.png" (click)="downloadResumeClientSide()" alt="">
+  </div>
+  <p style="color: white;">Develop By Suraj Raj - 2025</p>
+</div>

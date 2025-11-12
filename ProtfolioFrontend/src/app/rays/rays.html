@@ -1,0 +1,78 @@
+<om-fade [direction]="'left'" [transitionDuration]="'1s'">
+  <div>
+    <h3 style="text-align: center; color: white;">
+      I'm currently looking to join a <span style="color: #A362FF;">{{role}}</span> team
+    </h3>
+    <p style="text-align: center; color: white; font-size: large; font-family: cursive;">
+      that values building scalable, user-friendly applications to solve real-world problems.
+    </p>
+
+  </div>
+  <div class="beam-wrapper">
+    <div class="icon" #RefItem11>
+      <img src="cbimage.png" alt="csslogo" width="50px" height="48 px"
+        style="border-radius: 2rem;">
+
+    </div>
+    <div class="icon" #RefItem21>
+      <img src="typescript.png" alt="csslogo" width="50px" height="38px">
+    </div>
+    <div class="icon" #RefItem31>
+      <img src="angular.png" alt="csslogo" width="50px" height="48 px" style="background-color: #11081c;">
+    </div>
+    <div class="icon" #RefItem32>
+      <!-- <img src="html.jpg" alt="csslogo" width="40px" height="40 px" style="background-color: #11081c;" > -->
+      <img src="python.png" alt="csslogo" width="50px" height="60 px">
+
+    </div>
+    <div class="icon" #RefItem33>
+      <img src="react.png" alt="csslogo" width="50px" height="40 px" style="background-color: #11081c;">
+
+    </div>
+    <div class="center">
+      <div class="icon" #RefCenter1>
+        <!-- <om-three-globe [globeSize]="'100px'"></om-three-globe> -->
+        <img src="fullstack.png" alt="csslogo" width="70px" height="70 px">
+      </div>
+    </div>
+    <div class="icon" #RefItem41>
+      <img src="nodejs.png" alt="csslogo" width="55px" height="40 px">
+    </div>
+    <div class="icon" #RefItem51>
+      <img src="mongoose1.png" alt="csslogo" width="85px" height="80 px">
+    </div>
+    <div class="icon" #RefItem61>
+      <img src="net-1.png" alt="csslogo" width="90px" height="60 px">
+    </div>
+    <div class="icon" #RefItem52>
+      <img src="ai1.jpg" alt="csslogo" width="40px" height="45 px" style="background-color: #11081c;">
+    </div>
+    <div class="icon" #RefItem62>
+      <img src="express-js.png" alt="csslogo" width="50px" height="60 px">
+    </div>
+    
+
+    <om-connection-beam [fromRef]="RefItem11" [toRef]="RefCenter1" [pathWidth]="4"
+      [curvature]="-30"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem21" [toRef]="RefCenter1" [pathWidth]="4"
+      [curvature]="-15"></om-connection-beam>
+    >
+    <om-connection-beam [fromRef]="RefItem31" [toRef]="RefCenter1" [pathWidth]="4"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem32" [toRef]="RefCenter1" [pathWidth]="4"
+      [curvature]="15"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem33" [toRef]="RefCenter1" [pathWidth]="4"
+      [curvature]="30"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem41" [toRef]="RefCenter1" [pathWidth]="4" [reverse]="true"
+      [curvature]="-30"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem51" [toRef]="RefCenter1" [pathWidth]="4" [reverse]="true"
+      [curvature]="-15"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem61" [toRef]="RefCenter1" [pathWidth]="4"
+      [reverse]="true"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem52" [toRef]="RefCenter1" [pathWidth]="4" [reverse]="true"
+      [curvature]="15"></om-connection-beam>
+    <om-connection-beam [fromRef]="RefItem62" [toRef]="RefCenter1" [pathWidth]="4" [reverse]="true"
+      [curvature]="30"></om-connection-beam>
+
+  </div>
+
+</om-fade>

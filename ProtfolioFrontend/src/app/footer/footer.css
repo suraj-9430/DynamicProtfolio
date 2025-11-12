@@ -1,0 +1,53 @@
+.footer {
+  background-color: rgb(15, 15, 15);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.footer h1 {
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.footer h5 {
+  color: white;
+  font-family: cursive;
+  margin-bottom: 2rem;
+}
+
+.content2 {
+  margin: 2rem 0;
+}
+
+.content2 a {
+  margin: 0 1.5rem;
+}
+
+.important-doc {
+  margin: 2rem 0;
+}
+
+.important-doc a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.important-doc a:hover {
+  background-color: white;
+  color: black;
+}
+
+.copyright {
+  background-color: rgb(203, 210, 193);
+  color: black;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+}

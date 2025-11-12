@@ -1,0 +1,203 @@
+/* 🌍 Global Reset */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+.mainwidth {
+  width: 85%;
+  margin: auto;
+}
+
+.parent-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  flex-wrap: wrap; /* allows wrapping for smaller devices */
+}
+
+.row1 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.simg {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.intro {
+  flex: 2;
+  padding: 2rem;
+  text-align: left;
+}
+
+.name {
+  color: white;
+  margin-top: 3rem;
+  font-family: cursive;
+  font-size: 3rem;
+}
+
+.h33 {
+  color: #7127BA;
+  font-weight: bold;
+  font-size: 2.8rem;
+  font-family: cursive;
+}
+
+.content {
+  margin-top: 1rem;
+  color: white;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+
+.content-title {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+.content-subtitle {
+  font-size: 1rem;
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.about {
+  margin-top: 2rem;
+  color: white;
+  font-family: cursive;
+  text-align: center;
+}
+.about-title {
+  text-align: center;   /* force text in center */
+  margin: 1rem auto; 
+  margin-top: 0rem;   /* auto left-right centers it */
+  width: 70%;          /* make sure it spans full width */
+}
+
+.company-info {
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.company-logo {
+  width: 25px;
+  height: 20px;
+  margin: 0 0.3rem;
+  vertical-align: middle;
+}
+
+.about-desc {
+  width: 70%;
+  margin: 1rem auto;
+  font-size: 1rem;
+  text-align: justify;
+  line-height: 1.6rem;
+}
+
+.shiny-text-style {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* 📱 Mobile Devices (max 768px) */
+@media (max-width: 768px) {
+  .parent-row {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .simg {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 1rem;
+  }
+
+  .name {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+
+  .h33 {
+    font-size: 1.5rem;
+  }
+
+  .content-title {
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+  }
+
+  .content-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .about-title {
+    font-size: 1.4rem;
+  }
+
+  .about-desc {
+    width: 95%;
+    font-size: 0.9rem;
+  }
+
+  .shiny-text-style {
+    font-size: 0.95rem;
+  }
+}
+
+/* 📱 Small Mobiles (max 480px) */
+@media (max-width: 480px) {
+  .simg {
+    width: 130px;
+    height: 130px;
+  }
+
+  .name {
+    font-size: 1.8rem;
+  }
+
+  .h33 {
+    font-size: 1.2rem;
+  }
+
+  .about-title {
+    font-size: 1.2rem;
+  }
+
+  .about-desc {
+    font-size: 0.85rem;
+    line-height: 1.4rem;
+  }
+}
+
+/* 💻 Larger Screens (1200px and above) */
+@media (min-width: 1200px) {
+  .mainwidth {
+    width: 70%;
+  }
+
+  .name {
+    font-size: 4rem;
+  }
+
+  .h33 {
+    font-size: 3.2rem;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+
+  .about-desc {
+    font-size: 1.1rem;
+  }
+}

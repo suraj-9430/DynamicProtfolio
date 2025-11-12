@@ -1,0 +1,85 @@
+/* Section Heading */
+.timeline-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.timeline-wrapper h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: transparent;
+  font-family: cursive;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+/* Cards Container */
+.experience-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Individual Card */
+.experience-card {
+  border: 5px solid #693B93;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 12px;
+  width: 32rem;
+  min-height: 15rem;
+  color: white;
+  background: linear-gradient(90deg,
+      #130428 7%,
+      #251043 34%,
+      #38126D 57%,
+      #261045 85%,
+      #190634 100%);
+  padding: 1rem;
+}
+
+.experience-card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.experience-card .card-text {
+  text-align: justify;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* 📱 Responsive Fix */
+@media (max-width: 992px) {
+  .experience-card {
+    width: 100%;
+    max-width: 90%;
+    min-height: auto;
+  }
+
+  .timeline-wrapper h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .timeline-wrapper h1 {
+    font-size: 2rem;
+  }
+
+  .experience-card .card-title {
+    font-size: 1.2rem;
+  }
+
+  .experience-card .card-text {
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+  }
+}

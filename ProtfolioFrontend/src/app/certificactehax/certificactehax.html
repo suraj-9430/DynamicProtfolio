@@ -1,0 +1,79 @@
+<om-fade [direction]="'right'" [transitionDuration]="'1s'">
+  <div class="timeline-wrapper">
+    <h1>
+      Certificates
+      <om-neon-underline></om-neon-underline>
+    </h1>
+  </div>
+  <div style="margin-bottom: 5.5rem;">
+    <!-- <ul class="honeycomb">
+
+      <li class="honeycomb-cell">
+        <a href="https://drive.google.com/file/d/16RbqOQg4tId7MRzdHyceMVnhbl2mOd37/view?usp=sharing"
+          style="text-decoration: none;" target="_blank" rel="noopener noreferrer">
+          <img class="honeycomb-cell_image" src="angular1.png">
+          <div class="honeycomb-cell_title">Angular 19+</div>
+        </a>
+      </li>
+
+      <li class="honeycomb-cell">
+        <a href="https://drive.google.com/file/d/1ABnDPMhnjtiuCb8YlhTVZIjGPWmM20Fw/view?usp=drive_link" target="_blank"
+          rel="noopener noreferrer" style="text-decoration: none;">
+          <img class="honeycomb-cell_image" src="cisco2.jpg">
+          <div class="honeycomb-cell_title">Cybersecurity</div>
+        </a>
+      </li>
+      <li class="honeycomb-cell">
+        <a href="https://drive.google.com/file/d/1QE12p5TVofRSOprFOTw7xtQY969ddJ8k/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <img class="honeycomb-cell_image" src="microsoft3.webp">
+        <div class="honeycomb-cell_title">Generative AI</div>
+        </a>
+      </li>
+
+      <li class="honeycomb-cell">
+                        <a href="https://drive.google.com/file/d/1uhg9cVY6b_DC2G5bxY8YD5NgdV3Q-VCn/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <img class="honeycomb-cell_image" src="skillindia4.png">
+        <div class="honeycomb-cell_title">AI for India 2.0</div>
+                        </a>
+      </li>
+      <li class="honeycomb-cell">
+        <a href="https://drive.google.com/file/d/18f8TVRy4nVBdbQ6gbuG56kuhZOmAEVUZ/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <img class="honeycomb-cell_image" src="microsoft3.webp">
+        <div class="honeycomb-cell_title">Data Anlysis </div>
+        </a>
+      </li>
+      <li class="honeycomb-cell">
+         <a href="https://drive.google.com/file/d/11npyo0cv1zMGwCmsq-J6AVGd-N41AIWP/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <img class="honeycomb-cell_image" src="guvi1.webp">
+        <div class="honeycomb-cell_title">Python</div>
+         </a>
+      </li>
+      <li class="honeycomb-cell">
+         <a href="https://drive.google.com/file/d/17bKapAO6bQ6vUnX2Uukt01-D3YXnj-Sc/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <img class="honeycomb-cell_image" src="forage1.png">
+        <div class="honeycomb-cell_title">JP Morgan Chase/Citi/Accenture</div>
+         </a>
+      </li>
+
+      <li class="honeycomb-cell honeycomb_placeholder">
+      </li>
+    </ul> -->
+    <ul class="honeycomb">
+      <li class="honeycomb-cell" *ngFor="let cert of certificates; let i = index">
+        <a [href]="'http://localhost:8080/api/certificates/' + cert.id + '/download'" target="_blank"
+          rel="noopener noreferrer" style="text-decoration: none;">
+          <img class="honeycomb-cell_image" src="clickon.png">
+          <!-- keep static image rotation -->
+          <div class="honeycomb-cell_title">{{ cert.name }}</div>
+        </a>
+      </li>
+
+      <li class="honeycomb-cell honeycomb_placeholder"></li>
+    </ul>
+  </div>
+</om-fade>

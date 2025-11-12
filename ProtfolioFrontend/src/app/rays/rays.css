@@ -1,0 +1,151 @@
+ om-connection-beam {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+ }
+
+.beam-wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  width: 60%;
+  /* margin: 1 auto; */
+  justify-content: space-between;
+  /* margin-top: 2rem; */
+  position: relative;
+  /* margin-left: 19.5rem; */
+  margin: auto;
+  
+}
+
+/* Left side icons */
+.beam-wrapper .icon:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+.beam-wrapper .icon:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+}
+.beam-wrapper .icon:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+}
+.beam-wrapper .icon:nth-child(4) {
+  grid-column: 1;
+  grid-row: 4;
+}
+.beam-wrapper .icon:nth-child(5) {
+  grid-column: 1;
+  grid-row: 5;
+}
+
+/* Right side icons */
+.beam-wrapper .icon:nth-child(6) {
+  grid-column: 4;
+  grid-row: 1;
+}
+.beam-wrapper .icon:nth-child(7) {
+  grid-column: 5;
+  grid-row: 1;
+}
+.beam-wrapper .icon:nth-child(8) {
+  grid-column: 5;
+  grid-row: 2;
+}
+.beam-wrapper .icon:nth-child(9) {
+  grid-column: 5;
+  grid-row: 3;
+}
+.beam-wrapper .icon:nth-child(10) {
+  grid-column: 5;
+  grid-row: 4;
+}
+.beam-wrapper .icon:nth-child(11) {
+  grid-column: 5;
+  grid-row: 5;
+}
+
+/* Center icon */
+.beam-wrapper .center {
+  grid-column: 2;       /* middle column */
+  grid-row: 3;          /* move down to row 3 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;     /* fine tune downward shift */
+}
+
+.beam-wrapper .center .icon {
+  height: 64px;
+  width: 64px;
+  padding: 1rem;
+}
+
+/* General icon styling */
+.beam-wrapper .icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 48px;
+  width: 48px;
+  padding: 0.75rem;
+  background-color: var(--text-color-white);
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+
+
+/* Keep your existing desktop CSS as is */
+
+/* Mobile & Tablet responsiveness */
+@media (max-width: 1024px) {
+  .beam-wrapper {
+    width: 100%;
+    margin-left: 0;             
+    grid-template-columns: 1fr;  
+    /* grid-template-rows: auto;
+    justify-items: center;
+    text-align: center; */
+  }
+
+  /* Stack icons around the center */
+  .beam-wrapper .icon {
+    margin: 1rem 0;
+    height: 60px;
+    width: 60px;
+  }
+
+  /* Center icon bigger */
+  .beam-wrapper .center {
+    grid-column: 1;
+    grid-row: auto;
+    margin: 2rem 0;
+  }
+  .beam-wrapper .center .icon {
+    height: 80px;
+    width: 80px;
+  }
+
+  /* Adjust connection-beams to fit smaller screens */
+  om-connection-beam {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .beam-wrapper .icon {
+    height: 50px;
+    width: 50px;
+    padding: 0.5rem;
+  }
+  .beam-wrapper .center .icon {
+    height: 70px;
+    width: 70px;
+  }
+}
+

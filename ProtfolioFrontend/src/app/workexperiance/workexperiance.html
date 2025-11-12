@@ -1,0 +1,62 @@
+<om-fade [direction]="'right'" [transitionDuration]="'1s'">
+
+  <!-- Timeline Header -->
+  <div class="timeline-wrapper">
+    <h1>
+      Work Experience
+      <om-neon-underline></om-neon-underline>
+    </h1>
+  </div>
+
+  <!-- Experience Cards -->
+  @if (this.loading) {
+
+  <div class="experience-container">
+    @if (data.cabout1 && data.currcompany1 && data.duration1) {
+    <div class="experience-card">
+      <div class="card-body">
+        <h5 class="card-title">{{data.currcompany1}}</h5>
+        <h6>{{data.duration1}}</h6>
+        <p class="card-text">
+          {{data.cabout1}}
+        </p>
+      </div>
+    </div>
+    }
+    @if (data.cabout2 && data.currcompany2 && data.duration2) {
+    <div class="experience-card">
+      <div class="card-body">
+        <h5 class="card-title">{{data.currcompany2}}</h5>
+        <h6>{{data.duration2}}</h6>
+        <p class="card-text">
+          {{data.cabout2}}
+        </p>
+      </div>
+    </div>
+    }
+    @if (data.cabout3 && data.currcompany3 && data.duration3) {
+    <div class="experience-card">
+      <div class="card-body">
+        <h5 class="card-title">{{data.currcompany3}}</h5>
+        <h6>{{data.duration3}}</h6>
+        <p class="card-text">
+          {{data.cabout3}}
+        </p>
+      </div>
+    </div>
+    }
+    @if (data.cabout4 && data.currcompany4 && data.duration4) {
+    <div class="experience-card">
+      <div class="card-body">
+        <h5 class="card-title">{{data.currcompany4}}</h5>
+        <h6>{{data.duration4}}</h6>
+        <p class="card-text">
+          {{data.cabout4}}
+        </p>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+</om-fade>

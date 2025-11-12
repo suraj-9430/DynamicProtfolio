@@ -1,0 +1,118 @@
+ .timeline-wrapper {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+
+     h1 {
+         text-align: center;
+         font-size: 3rem;
+         font-weight: bold;
+         color: transparent;
+         font-family: cursive;
+         -webkit-background-clip: text;
+         background-clip: text;
+         background-image: radial-gradient(circle, rgb(190, 105, 142) 0%, rgb(225, 198, 22) 100%);
+         margin-bottom: 2rem;
+     }
+ }
+
+
+ .marquee-wrapper {
+     margin: auto;
+     width: 70%;
+     display: flex;
+     flex-direction: column;
+     position: relative;
+     /* overflow: hidden; */
+     border-radius: 1rem;
+
+ }
+
+ .card {
+     border-radius: 0.75rem;
+     /* border: 1px solid var(--text-color); */
+     width: 20rem;
+     background-color: #201032;
+     color: white;
+     font-family: cursive;
+ }
+
+ /* .card:hover {
+     -webkit-background-clip: text;
+     background-clip: text;
+     background-image: radial-gradient(circle, rgb(43, 168, 59) 0%, rgb(214, 30, 214) 100%);
+     color: transparent;
+     background-color: #130222;
+ } */
+
+
+
+
+
+ /* img {
+     width: "20px";
+     height: "20px";
+ } */
+ .col-md-9{
+    height: 5rem;
+ }
+
+ /* Default (for larger screens like PC/Laptop) is already fine */
+
+/* Mobile screens (max 768px) */
+@media (max-width: 768px) {
+  .timeline-wrapper h1 {
+    font-size: 2rem;  /* smaller heading */
+    margin-bottom: 1rem;
+  }
+
+  .marquee-wrapper {
+    width: 95%; /* use almost full screen */
+  }
+
+  .card {
+    width: 100%; /* full width card */
+    font-size: 0.9rem; 
+    padding: 0.75rem;
+  }
+
+  .card img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .col-md-9 h6 {
+    font-size: 0.95rem;
+    margin-top: 0.5rem !important;
+  }
+
+  .col-md-9 p {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+}
+
+/* Extra small screens (max 480px) */
+@media (max-width: 480px) {
+  .timeline-wrapper h1 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .card img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .col-md-9 h6 {
+    font-size: 0.85rem;
+  }
+
+  .col-md-9 p {
+    font-size: 0.7rem;
+  }
+}
