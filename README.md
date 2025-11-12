@@ -9,7 +9,6 @@ Built using **Angular** for the frontend and **Node.js (Express + Sequelize + My
 
 🔗 [View Portfolio App](https://surajraj.netlify.app/) The given link has Static UI just to give the demo of App
 
-🧪 Test Credentials (if you want to show a demo)
 
 ## 🚀 Features  
 
