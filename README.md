@@ -112,7 +112,8 @@ If you'd like to improve the project:
 **Suraj Raj**  
 💼 Software Developer | Angular & Node.js Enthusiast  
 📧 Email: [rajsuraj663@gmail.com](mailto:rajsuraj663@gmail.com)  
-🔗 [LinkedIn]([https://www.linkedin.com/in/suraj663]) • [GitHub](https://github.com/suraj-9430)
+🔗 [LinkedIn](https://linkedin.com/in/suraj663)
+• [GitHub](https://github.com/suraj-9430)
 
 
 
