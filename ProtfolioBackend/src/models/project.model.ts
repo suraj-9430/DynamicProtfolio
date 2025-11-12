@@ -21,7 +21,7 @@ Project.init(
             autoIncrement: true,
         },
         email: {
-            type: DataTypes.STRING, // optional: if linked to a user
+            type: DataTypes.STRING, 
             allowNull: true,
         },
 

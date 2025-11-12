@@ -35,12 +35,14 @@ export const login = async (req: Request, res: Response) => {
     res.cookie("SURAJ-AUTH", user.SessionToken, {
       httpOnly: true,
       sameSite: "lax",
-      secure: false // use true only with HTTPS
+      // secure: false ,// use true only with HTTPS
+       maxAge:  30*60*1000, 
+       secure: process.env.NODE_ENV === 'production',
     });
 
     return res.status(200).json({
       message: "Login successfully",
-      user: { id: user.id, name: user.name, email: user.email },
+      user:user.SessionToken
     });
   } catch (err: any) {
     console.error("Login error:", err);

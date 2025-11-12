@@ -90,15 +90,15 @@ export class LoginPage implements OnInit {
         const res = payload
         if (res.message === "Login successfully") {
           this.email = this.selectedLogin.email;
-          sessionStorage.setItem("islog", "true")
-          this.router.navigate(["/main"], {
-            queryParams: { email: this.email },
-            skipLocationChange: true
-          });
-          this.selectedLogin.email = ''
-          this.selectedLogin.password = ''
-
-
+          if (res.user) {
+            sessionStorage.setItem("islog", "true")
+            this.router.navigate(["/main"], {
+              queryParams: { email: this.email },
+              skipLocationChange: true
+            });
+            this.selectedLogin.email = ''
+            this.selectedLogin.password = ''
+          }
         }
         else {
           sessionStorage.setItem("islog", "false")
@@ -248,7 +248,7 @@ export class LoginPage implements OnInit {
     );
   }
 
-  
+
 
   async _handlesubmit() {
     if (this.selectedReg.password !== this.selectedReg.cofirmpassword) {
