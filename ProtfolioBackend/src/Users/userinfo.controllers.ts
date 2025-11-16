@@ -35,8 +35,6 @@ const userCreate = async (req: Request, res: Response) => {
       salt
     });
 
-    console.log(newUser)
-
     return res.status(201).json({
       status: "success",
       message: "User created successfully",
