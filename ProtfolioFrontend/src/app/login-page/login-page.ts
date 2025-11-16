@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 import { page3 } from './Modelfile/workexp';
 import { Observable } from 'rxjs';
 import { lastValueFrom } from 'rxjs';
+import { NgxShineBorderComponent } from '@omnedia/ngx-shine-border';
+
 
 
 @Component({
   selector: 'app-login-page',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,NgxShineBorderComponent],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css'
 })

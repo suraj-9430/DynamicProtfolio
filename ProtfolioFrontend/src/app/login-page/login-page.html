@@ -1,34 +1,54 @@
 @if (loginpageloading) {
-<div class="modal-backdrop fullscreen ">
-  <div class="custom-modal">
-    <!-- <button type="button" class="btn-close" aria-label="Close" ></button> -->
-    <!-- (click)="closeManual()" -->
-    <form autocomplete="off" #regForm1="ngForm" autocorrect="off">
-      <div class="mb-3">
-        <label class="form-label">Email Id</label>
 
-        <input type="email" class="form-control" name="email" [(ngModel)]="selectedLogin.email" #userId="ngModel"
-          required />
+<div class="page-center">
+
+  <div class="login-container">
+    <!-- LEFT SIDE IMAGE -->
+
+    <om-shine-border>
+      <div class="container-wrapper">
+        <div class="login-left">
+          <h1 class="text-center">Portfolio</h1>
+          <img src="student_Image2.png" alt="Login Image">
+        </div>
+
+        <!-- RIGHT SIDE FORM -->
+        <div class="login-right">
+          <h1 class="text-center login-title">LOGIN</h1>
+
+          <form autocomplete="off" #regForm1="ngForm">
+
+            <label for="email" class="form-label">Email</label>
+            <input type="text" id="email" class="form-control login-input" name="email" placeholder="Email"
+              [(ngModel)]="selectedLogin.email" required>
+            <br>
+
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control login-input" placeholder="Enter your password" name="password"
+              [(ngModel)]="selectedLogin.password" required>
+            <br>
+
+            <div class="d-grid gap-2 mx-auto">
+              <button class="btn btn-primary login-btn" type="button" (click)="login()" [disabled]="!regForm1.valid">
+                Login
+              </button>
+            </div>
+
+            <br>
+
+            <p class="text-center signup-text">
+              Don't have an account?
+              <span class="signup-link" (click)="newreg()">Sign up</span>
+            </p>
+
+          </form>
+        </div>
       </div>
-
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="selectedLogin.password"
-          #password="ngModel" required />
-
-      </div>
-    </form>
-
-    <div class="text-center">
-      <button class="btn btn-light" style="margin: 3rem;" (click)="login()" [disabled]="!regForm1.valid">
-        Login
-      </button>
-      <p (click)="newreg()">Click Here for New Registration</p>
-    </div>
-
+    </om-shine-border>
   </div>
 </div>
 }
+
 
 
 @if (newregistration) {
