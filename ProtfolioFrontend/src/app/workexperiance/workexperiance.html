@@ -1,3 +1,4 @@
+@if (this.loading) {
 <om-fade [direction]="'right'" [transitionDuration]="'1s'">
 
   <!-- Timeline Header -->
@@ -9,7 +10,7 @@
   </div>
 
   <!-- Experience Cards -->
-  @if (this.loading) {
+
 
   <div class="experience-container">
     @if (data.cabout1 && data.currcompany1 && data.duration1) {
@@ -57,6 +58,7 @@
     </div>
     }
   </div>
-  }
+
 
 </om-fade>
+  }

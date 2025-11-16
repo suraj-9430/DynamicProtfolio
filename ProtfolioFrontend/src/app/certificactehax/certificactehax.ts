@@ -15,6 +15,7 @@ import { CertiService } from './Service/certificate.service';
 export class Certificactehax implements OnInit {
   email: any;
    certificates: any[] = [];
+  displaycer: boolean=true;
   constructor(private router: ActivatedRoute, private certiService: CertiService
   ) { }
   ngOnInit(): void {
@@ -30,12 +31,20 @@ export class Certificactehax implements OnInit {
     this.certiService.getByUser(this.email).subscribe({
       next: (res: any) => {
         // Convert BLOB → base64 for preview/download
-        this.certificates = res.data.map((cert: any) => {
+        if(res["data"].length==0){
+          this.displaycer=false
+        }
+        else {
+          this.displaycer=true
+           this.certificates = res.data.map((cert: any) => {
           const base64String = this.arrayBufferToBase64(cert.fileData.data);
           const fileUrl = `data:${cert.fileType};base64,${base64String}`;
           return { ...cert, fileUrl };
         });
         console.log(this.certificates);
+
+        }
+       
       },
       error: (err) => {
         console.error('Error loading certificates:', err);
