@@ -58,7 +58,7 @@
         <om-typewriter [words]="['I turn ideas into scalable software..']" [writeDelay]="500" [writeSpeed]="100">
         </om-typewriter>
       </h1>
-
+      @if (data.currposition) {
       <p class="company-info">
         <om-shiny-text text="Currently, I'm a {{data.currposition}}  at&nbsp;" styleClass="shiny-text-style"
           [textColor]="'rgba(82, 82, 82, .7)'" [shimmerColor]="'hsl(0, 0%, 100%)'">
@@ -68,6 +68,7 @@
           [shimmerColor]="'hsl(0, 0%, 100%)'">
         </om-shiny-text>
       </p>
+      }
 
       <p class="about-desc">
         {{data.about |titlecase}}
