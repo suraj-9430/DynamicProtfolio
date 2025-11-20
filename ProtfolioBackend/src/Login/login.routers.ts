@@ -1,8 +1,9 @@
 import { Router } from "express";
 
 import {isAuthenticated} from "../Middleware"
-import { login } from "./login.controllers";
+import { login, sendOtp, verifyOtp } from "./login.controllers";
 
 const router = Router();
-router.post("/login",login)
+router.post("/login",verifyOtp);
+router.post("/otp",sendOtp);
 export default router;

@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 
-const SECRET='SURAJ-REST-API';
+const SECRET=process.env.SECRET as string;
 
 export const random=()=> crypto.randomBytes(128).toString('base64');
 

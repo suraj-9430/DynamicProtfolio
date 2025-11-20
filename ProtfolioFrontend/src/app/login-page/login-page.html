@@ -29,7 +29,21 @@
             <br>
 
             <div class="d-grid gap-2 mx-auto">
-              <button class="btn btn-primary login-btn" type="button" (click)="login()" [disabled]="!regForm1.valid">
+
+              <button class="btn btn-primary login-btn" type="button" (click)="Otp()" *ngIf="!otpsent"
+                [disabled]="!regForm1.valid">
+                Send OTP
+              </button>
+              @if (otpsent) {
+              <div class="otp-container">
+                <input *ngFor="let box of otpBoxes; let i = index" maxlength="1" type="text" name="otp{{i}}"
+                  class="otp-box" [(ngModel)]="otpValues[i]" (input)="moveToNext(i)"
+                  (keydown)="handleBackspace($event, i)" />
+              </div>
+              }
+
+              <button class="btn btn-primary login-btn" type="button" (click)="login()" *ngIf="otpsent"
+                [disabled]="!regForm1.valid">
                 Login
               </button>
             </div>
@@ -77,8 +91,8 @@
       <div class="col-md-4 mb-3">
         <label class="form-label">Contact <span style="color: red;">*</span></label>
         <input type="text" placeholder="Enter your Contact" class="form-control" name="contact"
-          [(ngModel)]="selectedReg.contact" maxlength="10" #contact="ngModel" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
-          required />
+          [(ngModel)]="selectedReg.contact" maxlength="10" #contact="ngModel"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
       </div>
 
       <!-- Country -->
@@ -151,12 +165,12 @@
       <div class="col-md-4 mb-3">
         <label class="form-label">Company Name</label>
         <input type="text" placeholder="Current Company Name" class="form-control" name="currcompany1"
-          [(ngModel)]="selectedWork.currcompany1" #currcompany1="ngModel"  />
+          [(ngModel)]="selectedWork.currcompany1" #currcompany1="ngModel" />
       </div>
       <div class="col-md-4 mb-3">
         <label class="form-label">Duration</label>
         <input type="email" placeholder="e.g. 2022 - 2024" class="form-control" name="duration1"
-          [(ngModel)]="selectedWork.duration1" #duration1="ngModel"  />
+          [(ngModel)]="selectedWork.duration1" #duration1="ngModel" />
       </div>
       <!-- <div class="col-md-4 mb-3">
         <label class="form-label">Role</label>
@@ -166,7 +180,7 @@
       <div class="col-md-12">
         <label class="form-label">Job Desciption</label>
         <textarea placeholder="Enter About Job" class="form-control" name="cabout1" [(ngModel)]="selectedWork.cabout1"
-           #cabout1="ngModel" maxlength="310"></textarea>
+          #cabout1="ngModel" maxlength="310"></textarea>
       </div>
     </div>
 
@@ -275,7 +289,7 @@
           <label class="col-sm-5 col-form-label">Project Title</label>
           <div class="col-sm-7">
             <input type="text" [(ngModel)]="project.title" name="title{{ $index }}" placeholder="e.g. Portfolio Website"
-               class="w-full p-2 border rounded-md form-control" />
+              class="w-full p-2 border rounded-md form-control" />
           </div>
         </div>
 
@@ -283,7 +297,7 @@
         <div class="mb-3 row">
           <label class="col-sm-5 col-form-label">Year</label>
           <div class="col-sm-7">
-            <input type="text" [(ngModel)]="project.year" name="year{{ $index }}" placeholder="e.g. 2025" 
+            <input type="text" [(ngModel)]="project.year" name="year{{ $index }}" placeholder="e.g. 2025"
               class="w-full p-2 border rounded-md form-control" />
           </div>
         </div>
@@ -295,7 +309,7 @@
           <div class="col-sm-7">
             <input type="text" [(ngModel)]="project.descriptions[i]" name="desc{{ $index }}_{{ i }}"
               placeholder="Enter description {{ i + 1 }}" maxlength="40"
-              class=" form-control w-full p-2 border rounded-md"  />
+              class=" form-control w-full p-2 border rounded-md" />
           </div>
         </div>
         }
@@ -305,7 +319,7 @@
           <label class="col-sm-5 col-form-label">URL/Link</label>
           <div class="col-sm-7">
             <input type="text" [(ngModel)]="project.sitelink" name="sitelink{{ $index }}"
-              placeholder="e.g. https://github.com"  class="form-control w-full p-2 border rounded-md" />
+              placeholder="e.g. https://github.com" class="form-control w-full p-2 border rounded-md" />
           </div>
         </div>
       </div>
@@ -330,14 +344,14 @@
           <label class="col-sm-5 col-form-label">Certificate Name</label>
           <div class="col-sm-7">
             <input type="text" class="w-full p-2 border rounded-md form-control" placeholder="e.g Python "
-              [(ngModel)]="cert.name" name="name{{i}}" >
+              [(ngModel)]="cert.name" name="name{{i}}">
           </div>
         </div>
         <div class="mb-3 row">
           <label class="col-sm-5 col-form-label">Organization Name</label>
           <div class="col-sm-7">
             <input type="text" class=" w-full p-2 border rounded-md form-control" placeholder="e.g XYZ company "
-              [(ngModel)]="cert.organization" name="organization{{i}}" >
+              [(ngModel)]="cert.organization" name="organization{{i}}">
           </div>
 
         </div>
@@ -346,7 +360,7 @@
           <div class="col-sm-7">
             <input type="file" class="form-control"
               accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-              (change)="onFileChange($event, i)"  />
+              (change)="onFileChange($event, i)" />
           </div>
         </div>
       </div>
@@ -361,7 +375,7 @@
 
   <p class="text-center" style="font-family: 'Times New Roman', Times, serif;font-size: 1.8rem;font-weight: bold;">
     Additional Details </p>
-  <form  #profileForm="ngForm" class="p-3">
+  <form #profileForm="ngForm" class="p-3">
     <div class="row container gy-3">
 
       <!-- GitHub -->
@@ -375,7 +389,7 @@
       <div class="col-md-4">
         <label class="form-label">LinkedIn <span style="color: red;">*</span></label>
         <input type="text" [(ngModel)]="profile.linkedin" name="linkedin" class="form-control"
-          placeholder="LinkedIn Profile URL"  required/>
+          placeholder="LinkedIn Profile URL" required />
       </div>
 
       <!-- Twitter -->
@@ -407,7 +421,8 @@
       <div class="col-md-4">
         <label class="form-label">Resume<span style="color: red;">*</span></label>
         <input type="file" class="form-control" (change)="onResumeSelected($event)"
-          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          required />
         <div *ngIf="resumeFileName" class="mt-2">
           <small class="text-success">Selected: {{ resumeFileName }}</small>
         </div>
@@ -425,7 +440,8 @@
 
 
   <div class="text-center">
-    <button class="btn btn-success" style="margin: 3rem; margin-bottom: 0rem;" (click)="_handlesubmit()" [disabled]="!regForm.valid||!profileForm.valid||!profilePic||!resumeFile||!this.passwordlength||selectedReg.password !== selectedReg.cofirmpassword">
+    <button class="btn btn-success" style="margin: 3rem; margin-bottom: 0rem;" (click)="_handlesubmit()"
+      [disabled]="!regForm.valid||!profileForm.valid||!profilePic||!resumeFile||!this.passwordlength||selectedReg.password !== selectedReg.cofirmpassword">
       Register
     </button>
     <!-- <button (click)="onSubmit()">onSubmit</button> -->

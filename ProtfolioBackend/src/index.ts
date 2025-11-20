@@ -1,15 +1,18 @@
+import dotenv from "dotenv";
+dotenv.config(); 
 import express from "express";
 import http from "http";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
-import db from "./Db/db";               // ✅ Sequelize instance
-import routes from "./MainRouter";      // ✅ Combined routes (e.g. /api/userinfo)
+import db from "./Db/db";              
+import routes from "./MainRouter"; 
+  
 
 const app = express();
 
-// ✅ Middlewares (must come before routes)
+
 app.use(cors({
   origin: "http://localhost:4200", // your Angular dev server
   credentials: true                // allow cookies / credentials
@@ -37,7 +40,7 @@ const server = http.createServer(app);
 
     console.log("📦 All models synced successfully");
 
-    server.listen(8080, () => {
+    server.listen(process.env.PORT, () => {
       console.log("🚀 Server running at http://localhost:8080/");
     });
   } catch (err: any) {
