@@ -153,3 +153,12 @@ export const verifyOtp = async (req: Request, res: Response) => {
 
 };
 
+
+export const logout= async(req:Request,res:Response)=>{
+  
+  res.clearCookie("SURAJ-AUTH")
+  return res.status(200).json({ message:"logout successfully" });
+
+
+}
+

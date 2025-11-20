@@ -11,6 +11,7 @@ export class Homeservice {
 
   private baseUrl = 'http://localhost:8080/api/userinfo';
   private profileURL = 'http://localhost:8080/api/socialmedia';
+ private logOut = 'http://localhost:8080/api/logout';
   constructor(private http: HttpClient) { }
 
 
@@ -41,5 +42,10 @@ export class Homeservice {
   }
   getRole() {
     return this.role.asObservable();
+  }
+  logout(): Observable<any>{
+    return this .http.get(this.logOut, {
+      withCredentials: true // 👈 send the cookie with request
+    });
   }
 }
