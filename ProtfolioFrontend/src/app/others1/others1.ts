@@ -38,7 +38,7 @@ export class Others1 implements AfterViewInit, OnDestroy {
     event.preventDefault();
     const username = (document.getElementById('username') as HTMLInputElement | null)?.value;
     const password = (document.getElementById('password') as HTMLInputElement | null)?.value;
-    console.log('Login attempt', { username, password });
+
     // TODO: wire up to Reactive Forms / Auth service as needed
   }
 

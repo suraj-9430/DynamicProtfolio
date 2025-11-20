@@ -30,7 +30,7 @@ export class Footer implements OnInit {
     this.router.queryParams.subscribe(params => {
       this.email = (params['email']);
       this.socialservice.getByUser(this.email).subscribe(payload => {
-        console.log(payload)
+       
         this.github = payload["github"]
         this.linkedin = payload["linkedin"]
         this.twitter = payload["twitter"]

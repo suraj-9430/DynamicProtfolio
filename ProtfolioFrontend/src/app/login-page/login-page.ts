@@ -124,10 +124,10 @@ Otp() {
 
 login() {
   const data = { ...this.selectedLogin, otp: this.otp }
-  console.log(data)
+  
   this.loginservice.Login(data).subscribe({
     next: (payload) => {
-      console.log('Response:', payload);
+   
       const res = payload
       if (res.message === "Login successfully") {
         this.email = this.selectedLogin.email;
@@ -173,7 +173,7 @@ moveToNext(index: number) {
 
   // Build final OTP string
   this.otp = this.otpValues.join('');
-  console.log(this.otp)
+  
 }
 
 handleBackspace(event: any, index: number) {
@@ -222,7 +222,7 @@ deleterow() {
   this.selectedWork.duration3 = "";
   this.selectedWork.duration1 = "";
   this.selectedWork.duration2 = "";
-  console.log("✅ Work experience saved successfully!");
+  
   return true;
 } else {
   return false;
@@ -249,7 +249,7 @@ deleterow() {
     const payload = await lastValueFrom(this.loginservice.createCertificate(formData));
 
     if (payload['status'] === 'success') {
-      console.log("✅ Certificate saved successfully!");
+      
       return true;
     } else {
       return false;
@@ -322,7 +322,7 @@ deleterow() {
   try {
     const payload: any = await this.loginservice.createUser(this.selectedReg).toPromise();
     if (payload?.status === 'success') {
-      console.log("✅ User saved successfully!");
+      
 
       // Run only the handlers that have data, isolate their errors
       // Collect results if you want to show more granular messages
@@ -331,7 +331,7 @@ deleterow() {
       if (this.hasWork()) {
         try {
           results.work = await this._handleworkexp();
-          console.log('Work save result:', results.work);
+         
         } catch (e) {
           console.error('Work save failed (unexpected):', e);
           results.work = false;
@@ -341,7 +341,7 @@ deleterow() {
       if (this.hasProjects()) {
         try {
           results.projects = await this._handlepro();
-          console.log('Projects save result:', results.projects);
+          
         } catch (e) {
           console.error('Project save failed (unexpected):', e);
           results.projects = false;
@@ -351,7 +351,7 @@ deleterow() {
       if (this.hasCertificates()) {
         try {
           results.certs = await this._handlecert();
-          console.log('Certificates save result:', results.certs);
+          
         } catch (e) {
           console.error('Certificate save failed (unexpected):', e);
           results.certs = false;
@@ -362,7 +362,7 @@ deleterow() {
       if (this.hasSocial()) {
         try {
           results.social = await this._handlsocial();
-          console.log('Social save result:', results.social);
+          
         } catch (e) {
           console.error('Social save failed (unexpected):', e);
           results.social = false;
@@ -465,7 +465,6 @@ removeProject(index: number) {
     const proresult = await this.loginservice.createProject(payload).toPromise();
     if (proresult["status"] == 'success') {
       this.projects = [];
-      console.log("Project savedd succesfully!")
       return true;
 
     }
@@ -580,15 +579,15 @@ onResumeSelected(event: any): void {
   // append files if available
   if (this.profilePic) formData.append('profilePic', this.profilePic);
   if (this.resumeFile) formData.append('resumeFile', this.resumeFile);
-  for (const pair of formData.entries()) {
-    console.log(`${pair[0]}:`, pair[1]);
-  }
+  // for (const pair of formData.entries()) {
+  //   console.log(`${pair[0]}:`, pair[1]);
+  // }
 
   try {
     const payload = await lastValueFrom(this.loginservice.createsocial(formData));
 
     if (payload['status'] === 'success') {
-      console.log("✅ Certificate saved successfully!");
+     
       return true;
     } else {
       return false;

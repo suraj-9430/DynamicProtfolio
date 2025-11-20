@@ -28,7 +28,7 @@ export class Projects implements OnInit {
       }
       else {
         this.data = result['data'] || [];
-        console.log("Fetched projects:", this.data);
+        
         this.timelineData = this.buildTimelineData(this.data);
       }
 

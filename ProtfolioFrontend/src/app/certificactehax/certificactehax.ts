@@ -41,7 +41,7 @@ export class Certificactehax implements OnInit {
           const fileUrl = `data:${cert.fileType};base64,${base64String}`;
           return { ...cert, fileUrl };
         });
-        console.log(this.certificates);
+        
 
         }
        

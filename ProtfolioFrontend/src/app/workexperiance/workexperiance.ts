@@ -32,7 +32,7 @@ export class Workexperiance implements OnInit {
         error: (err) => {
           console.log("Error:", err);
 
-          // If backend sends 401 + message: "Email not exist"
+         
           if (err.status === 401 && err.error?.message === "Email not exist") {
             console.log("Email not exist");
             this.loading = false;   // <-- YOUR REQUIREMENT
@@ -43,7 +43,7 @@ export class Workexperiance implements OnInit {
         },
 
         complete: () => {
-          console.log("Request completed");
+          
         }
       });
 

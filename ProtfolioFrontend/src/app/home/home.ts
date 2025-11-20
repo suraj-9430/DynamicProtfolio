@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxGradientTextComponent } from '@omnedia/ngx-gradient-text';
-// import { NgxOrbComponent } from '@omnedia/ngx-orb';
+
 import { NgxHighlighterComponent } from "@omnedia/ngx-highlighter";
 import { NgxShinyTextComponent } from '@omnedia/ngx-shiny-text';
 import { NgxFadeComponent } from '@omnedia/ngx-fade';
