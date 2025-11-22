@@ -61,6 +61,7 @@ export class Home implements OnInit {
     this.homeservice.logout().subscribe(payload => {
      if (payload["message"] === 'logout successfully')  {
         sessionStorage.clear()
+        alert(" Log Out Successfully ,Thank You Please Visit Again ");
         this.router.navigateByUrl("")
       }
     })
