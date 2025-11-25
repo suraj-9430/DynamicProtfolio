@@ -1,6 +1,7 @@
 // src/Certificate/certificates.controllers.ts
 import { Request, Response } from "express";
 import Certificate from "../models/certificate.model";
+import { AuthRequest } from "Middleware";
 
 
 
@@ -40,30 +41,32 @@ const createCertificate = async (req: Request, res: Response) => {
 
 const getCertificatesByEmail = async (req: Request, res: Response) => {
     try {
-        const { email } = req.params;
-        const certs = await Certificate.findAll({ where: { email } });
+
+        const authReq = req as AuthRequest;
+        const user = authReq.user ?? authReq.identity;
+        const certs = await Certificate.findAll({ where: { email: user.email } });
         res.status(200).json({ data: certs });
     } catch (err) {
         res.status(500).json({ message: "Server error" });
     }
 };
-const ViewDownload= async (req: Request, res: Response) => {
-  try {
-    const cert = await Certificate.findByPk(req.params.id);
-    if (!cert) return res.status(404).send("Certificate not found");
+const ViewDownload = async (req: Request, res: Response) => {
+    try {
+        const cert = await Certificate.findByPk(req.params.id);
+        if (!cert) return res.status(404).send("Certificate not found");
 
-    res.setHeader("Content-Type", cert.fileType);
-    res.setHeader(
-      "Content-Disposition",
-      `inline; filename="${cert.fileName}"`
-    );
+        res.setHeader("Content-Type", cert.fileType);
+        res.setHeader(
+            "Content-Disposition",
+            `inline; filename="${cert.fileName}"`
+        );
 
-    // Send the binary file data from MySQL
-    res.send(cert.fileData);
-  } catch (err) {
-    console.error("❌ Error fetching file:", err);
-    res.status(500).send("Server error");
-  }
+        // Send the binary file data from MySQL
+        res.send(cert.fileData);
+    } catch (err) {
+        console.error("❌ Error fetching file:", err);
+        res.status(500).send("Server error");
+    }
 };
 
-export { createCertificate, getCertificatesByEmail,ViewDownload };
+export { createCertificate, getCertificatesByEmail, ViewDownload };

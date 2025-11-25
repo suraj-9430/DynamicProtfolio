@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import CommonService from "../ORM/common.service";   // ✅ go up one, then into ORM
 import UserInfo from "../models/userinfo.model";
+import { AuthRequest } from "Middleware";
 
 const tableName = "workexp";
 const Create = async (req: Request, res: Response) => {
@@ -50,8 +51,12 @@ const Create = async (req: Request, res: Response) => {
 
 const Getdata = async (req: Request, res: Response) => {
   try {
-    const email = req.params.email;
-    const result = await CommonService.findByEmail(tableName, email)
+    // const email = req.params.email;
+    // const email = req.user.email;
+    const authReq = req as AuthRequest;
+    const user = authReq.user ?? authReq.identity;
+
+    const result = await CommonService.findByEmail(tableName, user.email)
     if (result) {
       return res.status(200).json({ data: result, status: "success" })
     }

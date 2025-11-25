@@ -1,6 +1,7 @@
 // src/SocialMedia/socialmedia.controllers.ts
 import { Request, RequestHandler, Response } from "express";
 import Profile from "../models/socialmedia.model"; // reuse your existing Profile model
+import { AuthRequest } from "Middleware";
 
 // ✅ POST /api/social/save
 export const saveSocialMedia = async (req: Request, res: Response) => {
@@ -36,7 +37,7 @@ export const saveSocialMedia = async (req: Request, res: Response) => {
 
     // Upsert (update if exists, else create new)
     const existing = await Profile.findOne({ where: { email } });
-    let profile:any;
+    let profile: any;
     if (existing) {
       await existing.update(payload);
       profile = await Profile.findOne({ where: { email } });
@@ -64,8 +65,10 @@ export const saveSocialMedia = async (req: Request, res: Response) => {
 // ✅ GET /api/social/email/:email
 export const getSocialMediaByEmail = async (req: Request, res: Response) => {
   try {
-    const { email } = req.params;
-    const profile = await Profile.findOne({ where: { email } });
+
+    const authReq = req as AuthRequest;
+    const user = authReq.user ?? authReq.identity;
+    const profile = await Profile.findOne({ where: { email: user.email } });
     if (!profile) return res.status(404).json({ message: "Profile not found" });
 
     res.status(200).json({
@@ -74,7 +77,7 @@ export const getSocialMediaByEmail = async (req: Request, res: Response) => {
       linkedin: profile.linkedin,
       twitter: profile.twitter,
       resumeUrl: profile.resumeUrl,
-    //   hasProfilePic: !!profile.profilePic,
+      //   hasProfilePic: !!profile.profilePic,
       hasResumeFile: !!profile.resumeFile,
     });
   } catch (error) {
@@ -86,10 +89,12 @@ export const getSocialMediaByEmail = async (req: Request, res: Response) => {
 // ✅ GET /api/social/:email/profile-pic
 export const getProfilePic: RequestHandler = async (req, res) => {
   try {
-    const { email } = req.params;
-    if (!email) return res.status(400).json({ message: "Email is required" });
+    
+     const authReq = req as AuthRequest;
+        const user = authReq.user ?? authReq.identity;
+    if (!user.email) return res.status(400).json({ message: "Email is required" });
 
-    const profile = await Profile.findOne({ where: { email } });
+    const profile = await Profile.findOne({ where: { email:user.email } });
     if (!profile) return res.status(404).json({ message: "Profile not found" });
 
     // if picture blob exists, return it
@@ -121,10 +126,12 @@ export const getProfilePic: RequestHandler = async (req, res) => {
 // ✅ GET /api/social/:email/resume
 export const getResume: RequestHandler = async (req, res) => {
   try {
-    const { email } = req.params;
-    if (!email) return res.status(400).json({ message: "Email is required" });
 
-    const profile = await Profile.findOne({ where: { email } });
+    const authReq = req as AuthRequest;
+    const user = authReq.user ?? authReq.identity;
+    if (!user.email) return res.status(400).json({ message: "Email is required" });
+
+    const profile = await Profile.findOne({ where: { email: user.email } });
     if (!profile) return res.status(404).json({ message: "Profile not found" });
 
     // ✅ If resume file exists in DB

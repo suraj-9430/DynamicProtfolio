@@ -17,14 +17,14 @@ export class Homeservice {
 
   getByUser(email: any): Observable<any> {
     //  return this.http.get<any>(`${this.baseUrl}/email/${email}`);
-    return this.http.get<any>(`${this.baseUrl}/email/${email}`, {
+    return this.http.get<any>(`${this.baseUrl}/email/me`, {
       withCredentials: true // 👈 send the cookie with request
     });
 
   }
   getProfilePic(email: string): Observable<Blob> {
     const encoded = encodeURIComponent(email);
-    const url = `${this.profileURL}/email/${encoded}/profile-pic`;
+    const url = `${this.profileURL}/email/me/profile-pic`;
     return this.http.get(url, { responseType: 'blob', withCredentials: true });
   }
 

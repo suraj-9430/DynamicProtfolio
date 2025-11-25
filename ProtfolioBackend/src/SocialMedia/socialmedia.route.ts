@@ -23,11 +23,11 @@ router.post(
 );
 
 // ✅ GET — Fetch social media info by email
-router.get("/email/:email",  isAuthenticated,  getSocialMediaByEmail);
+router.get("/email/me",  isAuthenticated,  getSocialMediaByEmail);
 
 // ✅ GET — Fetch profile picture (view inline)
-router.get("/email/:email/profile-pic", isAuthenticated,  getProfilePic);
+router.get("/email/me/profile-pic", isAuthenticated,  getProfilePic);
 
-router.get("/email/:email/resume",isAuthenticated, getResume);
+router.get("/email/me/resume",isAuthenticated, getResume);
 
 export default router;

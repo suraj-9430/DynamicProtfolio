@@ -14,7 +14,7 @@ const upload = multer({ storage });
 router.post("/upload", upload.array("files", 20), createCertificate);
 
 // Get certificates by email
-router.get("/email/:email",isAuthenticated, getCertificatesByEmail);
+router.get("/email/me",isAuthenticated, getCertificatesByEmail);
 router.get("/:id/download",isAuthenticated,ViewDownload);
 
 

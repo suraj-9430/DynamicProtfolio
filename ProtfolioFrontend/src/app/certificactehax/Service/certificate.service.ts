@@ -13,7 +13,7 @@ export class CertiService {
 
   getByUser(email: any): Observable<any> {
     //  return this.http.get<any>(`${this.baseUrl}/email/${email}`);
-    return this.http.get<any>(`${this.baseUrl}/email/${email}`, {
+    return this.http.get<any>(`${this.baseUrl}/email/me`, {
       withCredentials: true // 👈 send the cookie with request
     });
 

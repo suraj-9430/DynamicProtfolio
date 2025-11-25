@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CommonService from "../ORM/common.service";
+import { AuthRequest } from "Middleware";
 
 const tableName = "project";
 
@@ -33,14 +34,16 @@ const Create = async (req: Request, res: Response) => {
 
 const getData = async (req: Request, res: Response) => {
   try {
-    const email = req.params.email; // ✅ just the string
-    const result = await CommonService.findAllByEmail(tableName, email);
+
+    const authReq = req as AuthRequest;
+    const user = authReq.user ?? authReq.identity;
+    const result = await CommonService.findAllByEmail(tableName, user.email);
     if (result) {
       return res.status(200).json({ message: "success", data: result })
     }
     return res.status(404).json({ message: "User not found" });
 
-  } catch (err:any) {
+  } catch (err: any) {
     return res.status(500).json({ error: err.message });
 
   }

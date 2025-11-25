@@ -5,6 +5,6 @@ import { Create, getData } from "./project.controllers";
 const router = Router();
 
 router.post("/pcreate",Create );
-router.get("/email/:email",isAuthenticated,getData);
+router.get("/email/me",isAuthenticated,getData);
 
 export default router;

@@ -6,6 +6,6 @@ const router = Router();
 
 router.post("/createrec", userCreate);
 router.get("/getall",isAuthenticated, getUsers);
-router.get("/email/:email",isAuthenticated,getByEmail);
+router.get("/email/me",isAuthenticated,getByEmail);
 
 export default router;

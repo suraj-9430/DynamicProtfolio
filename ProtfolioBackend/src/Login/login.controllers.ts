@@ -85,7 +85,7 @@ export const sendOtp = async (req: Request, res: Response) => {
     from: process.env.EMAIL_FROM,
     to: email,
     subject: "Your Login OTP",
-    html: `<p>Hello ${user.name},</br>
+    html: `<p>Hello ${user.name},</p></br>
     <p>Thank you for choosing this Portfolio.</p></br><h3>Your OTP is <b>${otp}</b>. Valid for 2 minutes.</h3></br><p>Just one more step before you get started.</p>`
   });
   res.json({ message: "OTP sent to email" });

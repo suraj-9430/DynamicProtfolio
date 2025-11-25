@@ -12,7 +12,7 @@ export class Footerservice {
 
 
   getByUser(email: any): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/email/${email}`, {
+    return this.http.get<any>(`${this.baseUrl}/email/me`, {
       withCredentials: true // 👈 send the cookie with request
     });
 
@@ -23,7 +23,7 @@ export class Footerservice {
   // Build resume URL (server route)
   resumeUrl(email: string, download = false): string {
     const encoded = encodeURIComponent(email);
-    return `${this.baseUrl}/email/${encoded}/resume${download ? '?download=true' : ''}`;
+    return `${this.baseUrl}/email/me/resume${download ? '?download=true' : ''}`;
   }
 
   // Fetch resume as blob (no headers)

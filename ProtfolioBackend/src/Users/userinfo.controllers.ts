@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import CommonService from "../ORM/common.service";   // ✅ go up one, then into ORM
 import { autentication, random } from "../helper";
 import UserInfo from "../models/userinfo.model";
+import { AuthRequest } from "Middleware";
 
 const tableName = "userinfo";
 
@@ -41,7 +42,7 @@ const userCreate = async (req: Request, res: Response) => {
       data: newUser,
     });
 
-    
+
   } catch (err: any) {
     return res.status(500).json({ error: err.message });
   }
@@ -59,20 +60,22 @@ const getUsers = async (_req: Request, res: Response) => {
 
 const getByEmail = async (req: Request, res: Response) => {
   try {
-    const email = req.params.email; // ✅ just the string
-    const result = await CommonService.findByEmail(tableName, email);
+    
+    const authReq = req as AuthRequest;
+    const user = authReq.user ?? authReq.identity;
+    const result = await CommonService.findByEmail(tableName, user.email);
 
     if (result) {
       // remove sensitive fields
-      const safe={
-        id:result.id,
-        name:result.name,
-        email:result.email,
-        about:result.about,
-        company:result.company,
-        currposition:result.currposition,
-        role:result.role,
-        contact:result.contact
+      const safe = {
+        id: result.id,
+        name: result.name,
+        email: result.email,
+        about: result.about,
+        company: result.company,
+        currposition: result.currposition,
+        role: result.role,
+        contact: result.contact
       }
       return res.status(200).json({ data: safe, status: "success" });
     }
