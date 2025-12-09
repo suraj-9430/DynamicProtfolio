@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 // ✅ Use all routes from your MainRouter
-app.use(routes);
+app.use("/",routes);
 
 const server = http.createServer(app);
 
