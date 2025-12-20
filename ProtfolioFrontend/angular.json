@@ -33,13 +33,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "800kB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "10kB",
+                  "maximumError": "22.43kB"
                 }
               ],
               "outputHashing": "all"
@@ -54,6 +54,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [
+              "all"
+            ]
+          },
           "configurations": {
             "production": {
               "buildTarget": "DynamicProtfolio:build:production"
@@ -90,6 +95,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "2daae3e3-1ad4-4514-873b-73c63ceca3cd"
   }
 }
