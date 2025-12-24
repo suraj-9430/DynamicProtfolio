@@ -2,6 +2,9 @@
 import { Request, RequestHandler, Response } from "express";
 import Profile from "../models/socialmedia.model"; // reuse your existing Profile model
 import { AuthRequest } from "Middleware";
+import fs from "fs";
+import axios from "axios";
+import FormData from "form-data";
 
 // ✅ POST /api/social/save
 export const saveSocialMedia = async (req: Request, res: Response) => {
@@ -89,12 +92,12 @@ export const getSocialMediaByEmail = async (req: Request, res: Response) => {
 // ✅ GET /api/social/:email/profile-pic
 export const getProfilePic: RequestHandler = async (req, res) => {
   try {
-    
-     const authReq = req as AuthRequest;
-        const user = authReq.user ?? authReq.identity;
+
+    const authReq = req as AuthRequest;
+    const user = authReq.user ?? authReq.identity;
     if (!user.email) return res.status(400).json({ message: "Email is required" });
 
-    const profile = await Profile.findOne({ where: { email:user.email } });
+    const profile = await Profile.findOne({ where: { email: user.email } });
     if (!profile) return res.status(404).json({ message: "Profile not found" });
 
     // if picture blob exists, return it
@@ -158,5 +161,53 @@ export const getResume: RequestHandler = async (req, res) => {
   } catch (error) {
     console.error("getResume error:", error);
     return res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+export const parseResume = async (req: Request, res: Response) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Resume file is required"
+      });
+    }
+
+    // Prepare form-data for Python service
+    const formData = new FormData();
+    formData.append(
+      "file",
+      fs.createReadStream(req.file.path),
+      req.file.originalname
+    );
+
+    // Call Python FastAPI
+    const pythonResponse = await axios.post(
+      "http://127.0.0.1:8000/parse/resume",
+      formData,
+      {
+        headers: {
+          ...formData.getHeaders()
+        }
+      }
+    );
+
+    // Delete temp file
+    fs.unlinkSync(req.file.path);
+
+    return res.status(200).json({
+      success: true,
+      parsedData: pythonResponse.data
+    });
+
+  } catch (error: any) {
+    console.error("Resume parsing error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Resume parsing failed",
+      error: error.message
+    });
   }
 };

@@ -65,101 +65,122 @@
 
 
 
+
+
+
 @if (newregistration) {
-<!-- <div class=""> -->
-<div style="background:  #8c8888; width: 70%;margin: auto;">
+
+<div class="registration-page">
+
   <button type="button" class="btn-close" aria-label="Close" (click)="closeManual()"></button>
-  <p class="text-center" style="font-family: 'Times New Roman', Times, serif;font-size: 1.8rem;font-weight: bold;">BASIC
-    DETAILS </p>
-  <form #regForm="ngForm" autocomplete="off" class="container">
+
+  <!-- ================= BASIC DETAILS ================= -->
+  <p class="text-center registration-title">BASIC DETAILS</p>
+
+  <div class="container registration-card resume-upload">
+
+    <!-- Hidden real file input -->
+    <input type="file" id="resumeFile" class="real-file-input" (change)="onResumeSelected($event)"
+      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      required />
+
+    <!-- Fake input display -->
+    <div class="fake-file-input">
+      <span class="file-name">
+        {{ resumeFileName || 'No file selected' }}
+      </span>
+
+      <label for="resumeFile" class="btn btn-outline-light fancy-choose-btn">
+        📄 Choose File
+      </label>
+    </div>
+
+    <button type="button" class="btn btn-success upload-btn" (click)="_handelparser()">
+      Upload Resume
+    </button>
+
+  </div>
+
+
+
+  <form #regForm="ngForm" autocomplete="off" class="container registration-card">
     <div class="row">
-      <!-- Name -->
+
       <div class="col-md-4 mb-3">
-        <label class="form-label">Name <span style="color: red;">*</span></label>
-        <input type="text" placeholder="Enter your Full Name" class="form-control" name="name"
-          [(ngModel)]="selectedReg.name" #name="ngModel" required />
+        <label class="form-label">Name <span class="required-star">*</span></label>
+        <input type="text" class="form-control" placeholder="Enter your Full Name" name="name"
+          [(ngModel)]="selectedReg.name" required />
       </div>
 
-      <!-- Email -->
       <div class="col-md-4 mb-3">
-        <label class="form-label">Email <span style="color: red;">*</span></label>
-        <input type="email" placeholder="Enter your Email" class="form-control" name="email"
-          [(ngModel)]="selectedReg.email" #email="ngModel" required />
+        <label class="form-label">Email <span class="required-star">*</span></label>
+        <input type="email" class="form-control" placeholder="Enter your Email" name="email"
+          [(ngModel)]="selectedReg.email" required />
       </div>
 
-      <!-- Contact -->
       <div class="col-md-4 mb-3">
-        <label class="form-label">Contact <span style="color: red;">*</span></label>
-        <input type="text" placeholder="Enter your Contact" class="form-control" name="contact"
-          [(ngModel)]="selectedReg.contact" maxlength="10" #contact="ngModel"
-          oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
+        <label class="form-label">Contact <span class="required-star">*</span></label>
+        <input type="text" class="form-control" placeholder="Enter your Contact" name="contact" maxlength="10"
+          [(ngModel)]="selectedReg.contact" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required />
       </div>
 
-      <!-- Country -->
       <div class="col-md-4 mb-3">
         <label class="form-label">Country</label>
-        <input type="text" placeholder="Enter your Country" class="form-control" name="address"
-          [(ngModel)]="selectedReg.address" #address="ngModel" maxlength="20" />
+        <input type="text" class="form-control" placeholder="Enter your Country" name="address"
+          [(ngModel)]="selectedReg.address" />
       </div>
 
-      <!-- Role -->
       <div class="col-md-4 mb-3">
-        <label class="form-label">Role <span style="color: red;">*</span></label>
+        <label class="form-label">Role <span class="required-star">*</span></label>
         <input type="text" class="form-control" placeholder="e.g FullStack Developer" name="role"
-          [(ngModel)]="selectedReg.role" #role="ngModel" required />
-
+          [(ngModel)]="selectedReg.role" required />
       </div>
 
-      <!-- Current Company -->
       <div class="col-md-4 mb-3">
         <label class="form-label">Current Company</label>
-        <input type="text" placeholder="Enter your current company Name" class="form-control" name="company"
-          [(ngModel)]="selectedReg.company" #company="ngModel" />
+        <input type="text" class="form-control" placeholder="Current Company" name="company"
+          [(ngModel)]="selectedReg.company" />
       </div>
 
-      <!-- Current Position -->
       <div class="col-md-4 mb-3">
         <label class="form-label">Current Position</label>
-        <input type="text" placeholder="Enter your Current Position" class="form-control" name="currposition"
-          [(ngModel)]="selectedReg.currposition" #currposition="ngModel" />
+        <input type="text" class="form-control" placeholder="Current Position" name="currposition"
+          [(ngModel)]="selectedReg.currposition" />
       </div>
 
-      <!-- About -->
       <div class="col-md-8 mb-3">
-        <label class="form-label">About Yourself <span style="color: red;">*</span></label>
-        <textarea placeholder="Enter About Yourself" class="form-control" name="about" [(ngModel)]="selectedReg.about"
-          required #about="ngModel" maxlength="310"></textarea>
+        <label class="form-label">About Yourself <span class="required-star">*</span></label>
+        <textarea class="form-control" placeholder="Tell us about yourself" name="about" [(ngModel)]="selectedReg.about"
+          minlength="100" rows="1" required></textarea>
       </div>
 
-      <!-- Password -->
       <div class="col-md-6 mb-3">
-        <label class="form-label">Password <span style="color: red;">*</span></label>
-        <input type="password" (change)="_checkpassword()" placeholder="Enter your Password" class="form-control"
-          name="password" [(ngModel)]="selectedReg.password" #password="ngModel" required />
+        <label class="form-label">Password <span class="required-star">*</span></label>
+        <input type="password" class="form-control" placeholder="Enter Password" name="password"
+          [(ngModel)]="selectedReg.password" (change)="_checkpassword()" required />
         @if (!passwordlength) {
-        <span>Please Enter Greater than 8 Char</span>
-        }
-      </div>
-
-      <!-- Confirm Password -->
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Confirm Password <span style="color: red;">*</span></label>
-        <input type="text" (change)="_checkpassword()" placeholder="Enter Confirm Password" class="form-control"
-          name="cofirmpassword" [(ngModel)]="selectedReg.cofirmpassword" #cofirmpassword="ngModel" required />
-        @if (passwordmatched) {
-        <span>✅</span>
+        <small class="text-danger">Minimum 8 characters required</small>
         }
         @else {
-        <span>❌</span>
+          <small>👍</small>
+          
         }
       </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Confirm Password <span class="required-star">*</span></label>
+        <input type="password" class="form-control" placeholder="Confirm Password" name="cofirmpassword"
+          [(ngModel)]="selectedReg.cofirmpassword" (change)="_checkpassword()" required />
+        <span>{{ passwordmatched ? '✅' : '❌' }}</span>
+      </div>
+
     </div>
   </form>
 
-  <p class="text-center" style="font-family: 'Times New Roman', Times, serif;font-size: 1.8rem;font-weight: bold;">Work
-    Experience/Internship </p>
-  <form #WExpForm="ngForm" autocomplete="off" class="container">
-    <!-- <p style="width:10%;margin-left: 90%;" (click)="addnewrow()">Add</p> -->
+  <!-- ================= WORK EXPERIENCE ================= -->
+  <p class="text-center registration-title">WORK EXPERIENCE / INTERNSHIP</p>
+
+  <form #WExpForm="ngForm" class="container registration-card">
     <div class="row">
       <!-- Name -->
       <div class="col-md-4 mb-3">
@@ -187,6 +208,7 @@
     <br>
     <div class="row" *ngIf="inceaserow>=2">
       <p style="width:10%;margin-left: 90%;" *ngIf="inceaserow<=2" (click)="deleterow()">🗑️</p>
+      
       <!-- <button type="button" class="btn btn-danger btn-sm" (click)="removeExperience(i)">🗑️</button> -->
       <!-- Name -->
       <div class="col-md-4 mb-3">
@@ -270,17 +292,21 @@
       Experience</button>
   </form>
 
+  <!-- ================= PROJECTS ================= -->
+  <p class="text-center registration-title">PROJECTS</p>
 
-  <p class="text-center" style="font-family: 'Times New Roman', Times, serif;font-size: 1.8rem;font-weight: bold;">
-    Projects </p>
-  <form #projectForm="ngForm" class="container">
+  <form #projectForm="ngForm" class="container registration-card">
     <div class="row container">
-      @for (project of projects; track $index) {
+      @for (project of projects; track $index ) {
       <div class="col-md-6  rounded-lg p-3 mb-4 bg-gray-50">
         <p class="text-center font-semibold mb-2">Project {{ $index + 1 }}</p>
 
         <!-- Delete button -->
-        <button type="button" style="background: red;" (click)="removeProject($index)" *ngIf="projects.length > 2">
+        <!-- <button type="button" style="background: red;" (click)="removeProject($index)" *ngIf="projects.length > 2">
+          🗑️
+        </button> -->
+        <button type="button" class="project-delete-btn" (click)="removeProject($index)" *ngIf="projects.length > 1"
+          aria-label="Delete project">
           🗑️
         </button>
 
@@ -330,16 +356,21 @@
       Add Another Project</button>
   </form>
 
-  <p class="text-center" style="font-family: 'Times New Roman', Times, serif;font-size: 1.8rem;font-weight: bold;">
-    Certificate </p>
-  <form #certForm="ngForm" class="container">
+  <!-- ================= CERTIFICATES ================= -->
+  <p class="text-center registration-title">CERTIFICATES</p>
+
+  <form #certForm="ngForm" class="container registration-card">
     <div class="row container">
       @for (cert of certificates;track i; let i = $index) {
       <div class="col-md-6  rounded-lg p-3 mb-4 bg-gray-50">
         <p class="text-center font-semibold mb-2">Certificate {{ i + 1 }}</p>
-        <button type="button" style="background: red;" (click)="removeCertificate(i)" *ngIf="certificates.length > 1">
+
+        <button type="button" class="project-delete-btn" (click)="removeCertificate(i)" *ngIf="certificates.length > 1"
+          aria-label="Delete project">
           🗑️
         </button>
+
+
         <div class="mb-3 row">
           <label class="col-sm-5 col-form-label">Certificate Name</label>
           <div class="col-sm-7">
@@ -358,9 +389,22 @@
         <div class="mb-3 row">
           <label class="col-sm-5 col-form-label">Upload Certificate (PDF/DOC/DOCX)</label>
           <div class="col-sm-7">
-            <input type="file" class="form-control"
+            <!-- Hidden real certificate input -->
+            <input type="file" id="certFile{{ i }}" class="real-file-input"
               accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
               (change)="onFileChange($event, i)" />
+
+            <!-- Fancy certificate upload UI -->
+            <div class="fake-file-input">
+              <span class="file-name">
+                {{ certificates[i]['file']?.name || 'No file selected' }}
+              </span>
+
+              <label for="certFile{{ i }}" class="fancy-choose-btn">
+                📄 Choose File
+              </label>
+            </div>
+
           </div>
         </div>
       </div>
@@ -369,13 +413,12 @@
     <button type="button" class="btn btn-primary btn-sm mt-2" (click)="addCertificate()"
       [disabled]="certificates.length>=8">➕
       Add Another Certificate</button><br><br>
-    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
   </form>
 
+  <!-- ================= ADDITIONAL DETAILS ================= -->
+  <p class="text-center registration-title">ADDITIONAL DETAILS</p>
 
-  <p class="text-center" style="font-family: 'Times New Roman', Times, serif;font-size: 1.8rem;font-weight: bold;">
-    Additional Details </p>
-  <form #profileForm="ngForm" class="p-3">
+  <form #profileForm="ngForm" class="container registration-card">
     <div class="row container gy-3">
 
       <!-- GitHub -->
@@ -409,22 +452,44 @@
       <!-- Profile Picture -->
       <div class="col-md-4">
         <label class="form-label">Profile Picture<span style="color: red;">*</span></label>
-        <input type="file" class="form-control" (change)="onProfilePicSelected($event)"
+        <!-- Hidden real profile pic input -->
+        <input type="file" id="profilePicInput" class="real-file-input" (change)="onProfilePicSelected($event)"
           accept=".png,.jpg,.jpeg,image/png,image/jpeg" required />
-        <div *ngIf="profilePreview" class="mt-2 text-center">
+
+        <!-- Fancy profile pic upload UI -->
+        <div class="fake-file-input">
+          <span class="file-name">
+            {{ profilePic?.name || 'No image selected' }}
+          </span>
+
+          <label for="profilePicInput" class="fancy-choose-btn">
+            🖼️ Choose Image
+          </label>
+        </div>
+
+        <!-- <div *ngIf="profilePreview" class="mt-2 text-center">
           <img [src]="profilePreview" class="img-thumbnail" alt="Profile Preview"
             style="width: 120px; height: 120px; object-fit: cover;" />
-        </div>
+        </div> -->
       </div>
 
       <!-- Resume File -->
       <div class="col-md-4">
         <label class="form-label">Resume<span style="color: red;">*</span></label>
-        <input type="file" class="form-control" (change)="onResumeSelected($event)"
+        <!-- Hidden real file input -->
+        <input type="file" id="resumeFileAlt" class="real-file-input" (change)="onResumeSelected($event)"
           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           required />
-        <div *ngIf="resumeFileName" class="mt-2">
-          <small class="text-success">Selected: {{ resumeFileName }}</small>
+
+        <!-- Fancy file input UI -->
+        <div class="fake-file-input">
+          <span class="file-name">
+            {{ resumeFileName || 'No file selected' }}
+          </span>
+
+          <label for="resumeFileAlt" class="fancy-choose-btn">
+            📎 Choose File
+          </label>
         </div>
       </div>
 
@@ -435,19 +500,16 @@
     </div>
   </form>
 
-
-
-
-
+  <!-- ================= SUBMIT ================= -->
   <div class="text-center">
-    <button class="btn btn-success" style="margin: 3rem; margin-bottom: 0rem;" (click)="_handlesubmit()"
-      [disabled]="!regForm.valid||!profileForm.valid||!profilePic||!resumeFile||!this.passwordlength||selectedReg.password !== selectedReg.cofirmpassword">
+    <button class="btn btn-success" style="margin: 3rem 0" (click)="_handlesubmit()"
+      [disabled]="!regForm.valid || !profileForm.valid || !profilePic || !resumeFile || !passwordlength || selectedReg.password !== selectedReg.cofirmpassword">
       Register
     </button>
-    <!-- <button (click)="onSubmit()">onSubmit</button> -->
-    <p (click)="newreg()">Already Exist</p>
+
+    <p class="signup-link" (click)="newreg()">Already Exist</p>
   </div>
-  <br><br><br><br>
+
 </div>
 
 }

@@ -35,5 +35,9 @@ export class Loginservice {
   }
   createsocial(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/socialmedia/save`, data)
+  } 
+  
+  parsereume(data:any):Observable<any> {
+    return this.http.post(`${this.baseUrl}/socialmedia/parse`, data)
   }
 }

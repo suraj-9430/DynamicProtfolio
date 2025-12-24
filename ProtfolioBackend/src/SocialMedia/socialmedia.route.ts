@@ -1,7 +1,7 @@
 // src/SocialMedia/socialmedia.route.ts
 import { Router } from "express";
 import multer from "multer";
-import { saveSocialMedia, getSocialMediaByEmail, getProfilePic, getResume } from "../SocialMedia/socialmedia.controllers";
+import { saveSocialMedia, getSocialMediaByEmail, getProfilePic, getResume, parseResume } from "../SocialMedia/socialmedia.controllers";
 import { isAuthenticated } from "../Middleware";
 
 const router = Router();
@@ -22,12 +22,27 @@ router.post(
   saveSocialMedia
 );
 
+
+const upload1 = multer({ dest: "uploads/" });
+
+/**
+ * POST /api/resume/parse
+ */
+router.post(
+  "/parse",
+  upload1.single("resumeFile"),
+  parseResume
+);
+
 // ✅ GET — Fetch social media info by email
-router.get("/email/me",  isAuthenticated,  getSocialMediaByEmail);
+router.get("/email/me", isAuthenticated, getSocialMediaByEmail);
+
+
+
 
 // ✅ GET — Fetch profile picture (view inline)
-router.get("/email/me/profile-pic", isAuthenticated,  getProfilePic);
+router.get("/email/me/profile-pic", isAuthenticated, getProfilePic);
 
-router.get("/email/me/resume",isAuthenticated, getResume);
+router.get("/email/me/resume", isAuthenticated, getResume);
 
 export default router;
