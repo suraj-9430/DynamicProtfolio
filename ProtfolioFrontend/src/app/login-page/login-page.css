@@ -150,6 +150,11 @@ imp {
 .form-control:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  outline: none;
+}
+
+.otp-box:focus {
+  outline: none;
 }
 
 /* ===============================
@@ -165,9 +170,14 @@ imp {
   transition: all 0.3s ease;
 }
 
-.login-btn:hover {
+.login-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
+}
+
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* ===============================
@@ -183,6 +193,7 @@ imp {
   color: #1d4ed8;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .signup-link:hover {
@@ -321,6 +332,15 @@ imp {
   min-height: 100vh;
   background: linear-gradient(135deg, #0f172a, #1e293b);
   padding: 2rem 1rem;
+  position: relative;
+}
+
+.registration-page .btn-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  filter: invert(1);
+  z-index: 10;
 }
 
 /* Section titles */
@@ -344,10 +364,8 @@ imp {
 /* Labels */
 .registration-page .form-label {
   color: #e5e7eb !important;
-
   font-weight: 600;
 }
-
 
 /* ===============================
    REGISTRATION LABEL COLOR FIX
@@ -361,7 +379,7 @@ imp {
 
 
 .registration-page .required-star {
-  color: #ef4444;          /* bright red */
+  color: #ef4444;
   font-weight: 700;
   margin-left: 4px;
 }
@@ -390,7 +408,7 @@ imp {
   border-radius: 12px;
 }
 
-/* Project & certificate cards */
+/* Project & certificate cards - override for registration page */
 .registration-page .bg-gray-50,
 .registration-page .rounded-lg {
   background: linear-gradient(160deg, #020617, #111827);
@@ -488,6 +506,8 @@ imp {
   background: linear-gradient(135deg, #2563eb, #1e40af);
   color: #fff;
   border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .fancy-choose-btn:hover {
@@ -515,38 +535,82 @@ imp {
 
 
 /* ===============================
-   MODERN PROJECT DELETE BUTTON
+   PROJECTS & CERTIFICATES
 ================================ */
+.bg-gray-50 {
+  position: relative;
+  background: linear-gradient(160deg, #020617, #111827);
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
 .project-delete-btn {
   position: absolute;
   top: 14px;
   right: 14px;
-
   background: transparent;
   border: none;
   font-size: 1.1rem;
-
-  color: #94a3b8;            /* subtle gray */
+  color: #94a3b8;
   cursor: pointer;
-
-  opacity: 0;               /* hidden by default */
+  opacity: 0;
   transform: scale(0.9);
   transition: all 0.25s ease;
 }
 
-/* Show on card hover */
 .bg-gray-50:hover .project-delete-btn {
   opacity: 1;
   transform: scale(1);
 }
 
-/* Hover effect */
 .project-delete-btn:hover {
-  color: #ef4444;            /* soft red on hover */
+  color: #ef4444;
 }
 
-/* Make card position relative */
-.bg-gray-50 {
+/* ===============================
+   WORK EXPERIENCE DELETE BUTTON
+================================ */
+.work-exp-row {
   position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.work-exp-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.work-exp-delete:hover {
+  color: #ef4444;
+}
+
+/* ===============================
+   ADDITIONAL UTILITIES
+================================ */
+.password-match {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.submit-section {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.submit-btn {
+  margin-bottom: 1rem;
+}
+
+.login-input {
+  margin-bottom: 1rem;
 }
 
